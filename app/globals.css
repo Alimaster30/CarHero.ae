@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Carify Pro design system — tokens sampled directly from the
+   reference videos in /reference.
+   Swap --color-brand to CarHero yellow (#E8FF00) to re-skin the site.
+   ------------------------------------------------------------------ */
+@theme {
+  --color-brand: #1c58f4;
+  --color-brand-600: #1546cc;
+  --color-brand-50: #eef3ff;
+
+  --color-navy: #101725;
+  --color-ink: #15161b;
+  --color-ink-900: #0b0d14;
+
+  --color-surface: #ffffff;
+  --color-surface-muted: #f5f7fa;
+
+  --color-body: #6b7280;
+  --color-body-dark: #9ca3af;
+  --color-hairline: #e6e9ef;
+  --color-hairline-dark: #262832;
+
+  --font-sans: "Outfit", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+
+  --text-display: clamp(2.5rem, 5.4vw, 4.25rem);
+  --text-h2: clamp(2rem, 3.6vw, 3rem);
+  --text-h3: clamp(1.375rem, 2vw, 1.75rem);
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-navy);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Shared primitives ------------------------------------------------ */
+@utility container-x {
+  width: 100%;
+  max-width: 1140px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@utility eyebrow {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Dotted grid motif behind hero / certificates / why-choose-us */
+.dot-grid {
+  background-image: radial-gradient(var(--color-brand) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+  opacity: 0.55;
+}
+
+/* Diagonal hatch on the Our Impact bars - the template's own texture */
+.hatch {
+  background-image: url("/images/impact-hatch.png");
+  background-size: 140px auto;
+  background-repeat: repeat;
+}
+
+/* WhatsApp widget halo ---------------------------------------------- */
+@keyframes wa-halo {
+  0%   { transform: scale(1); opacity: 0.55; }
+  70%  { transform: scale(1.7); opacity: 0; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+.wa-halo {
+  animation: wa-halo 2.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+/* Testimonial portrait ticker --------------------------------------
+   The two columns counter-scroll: left rises, right falls. Each column's
+   list is duplicated, so -50% lands exactly on the seam. */
+@keyframes ticker-up {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+@keyframes ticker-down {
+  from { transform: translateY(-50%); }
+  to   { transform: translateY(0); }
+}
+.ticker-up {
+  animation: ticker-up 26s linear infinite;
+}
+.ticker-down {
+  animation: ticker-down 26s linear infinite;
+}
+
+/* Brand marquee ---------------------------------------------------- */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 34s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+::selection {
+  background: var(--color-brand);
+  color: #fff;
+}
