@@ -37,7 +37,7 @@ export function BlindsImage({
               className="h-full flex-1 origin-center bg-brand"
               initial={{ scaleX: 1 }}
               whileInView={{ scaleX: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: true, margin: "-80px 0px" }}
               transition={{
                 duration: 0.8,
                 delay: 0.1 + i * 0.075,

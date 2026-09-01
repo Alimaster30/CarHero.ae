@@ -81,7 +81,7 @@ export function Testimonials() {
                           key={`${t.name}-${i}`}
                           initial={{ opacity: 0, scale: reduced ? 1 : 0.82 }}
                           whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true, margin: "-40px" }}
+                          viewport={{ once: true, margin: "-40px 0px" }}
                           transition={{
                             duration: 0.55,
                             delay: (i % column.length) * 0.07,

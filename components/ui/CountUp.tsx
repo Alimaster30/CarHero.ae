@@ -21,7 +21,11 @@ export function CountUp({
   className?: string;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  // Vertical-only inset: a single-value rootMargin insets left/right too, and
+  // this span is only as wide as the digits it currently shows - "0" next to
+  // the container's 20px gutter would sit inside a horizontal inset and never
+  // intersect, leaving the figure stuck at zero.
+  const inView = useInView(ref, { once: true, margin: "-60px 0px" });
   const reduced = useReducedMotion();
   const [value, setValue] = useState(0);
 

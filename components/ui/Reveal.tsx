@@ -15,6 +15,15 @@ const offset: Record<Direction, { x: number; y: number }> = {
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
+/**
+ * Viewport insets must stay VERTICAL-only. A single-value rootMargin insets all
+ * four sides, so on narrow screens - where `container-x` leaves a heading only
+ * 20px from the viewport edge - the leading glyphs sit inside the horizontal
+ * inset, never intersect, and stay stuck at opacity 0.
+ */
+const REVEAL_MARGIN = "-80px 0px";
+const TEXT_MARGIN = "-60px 0px";
+
 export function Reveal({
   children,
   direction = "up",
@@ -37,7 +46,7 @@ export function Reveal({
       className={className}
       initial={{ opacity: 0, ...from }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: REVEAL_MARGIN }}
       transition={{ duration: 0.7, delay, ease: EASE }}
     >
       {children}
@@ -80,7 +89,7 @@ export function RevealText({
                   className="inline-block whitespace-pre"
                   initial={{ opacity: 0, y: reduced ? 0 : "0.55em" }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
+                  viewport={{ once: true, margin: TEXT_MARGIN }}
                   transition={{
                     duration: 0.5,
                     delay: delay + i * stagger,

@@ -39,7 +39,7 @@ export function Impact() {
                   className="absolute inset-x-0 bottom-0 border-t-[3px] border-brand bg-navy"
                   initial={{ height: reduced ? `${stat.height * 100}%` : "0%" }}
                   whileInView={{ height: `${stat.height * 100}%` }}
-                  viewport={{ once: true, margin: "-60px" }}
+                  viewport={{ once: true, margin: "-60px 0px" }}
                   transition={{
                     duration: 1.2,
                     delay: 0.15 + i * 0.09,
